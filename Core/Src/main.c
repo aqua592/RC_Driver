@@ -134,6 +134,12 @@ int main(void)
 
     HAL_TIMEx_HallSensor_Start_IT(&htim3);
 
+    FLAG.READY = 1;
+    FLAG.FAULT = 0;       // 에러 상태 해제
+    FLAG.DUTY_TEST = 1;   // DUTY_TEST 모드 진입 (50% 듀티 출력)
+
+    HAL_TIM_Base_Start_IT(&htim2); // TIM2 10kHz 제어 루프 시작 (이 안에서 Control() 호출)
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
